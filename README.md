@@ -35,7 +35,7 @@ Before formatting:  Animation|Children's
 After formatting:  Children's & Animation <ID>
 Before formatting:  Children's|Adventure|Animation
 After formatting:  Children's, Adventure & Animation <ID>
-Hive
+### Hive
 
 Using Hive script, find top 11 average rated "Action" movies with descending order of rating. (Show the create table command, load from local, and the Hive query).
 Using Hive script, List all the movies with its genre where the movie genre is Action or Drama and the average movie rating is in between 4.4 - 4.9 and only the male users rate the movie. (Show the create table command, load from local, and the Hive query).
@@ -49,9 +49,9 @@ Before formatting:  Animation|Children's
 After formatting:  Children's, & Animation - <ID>
 Before formatting:  Children's|Adventure|Animation
 After formatting:  Children's, Adventure, & Animation - <ID>
-Cassandra
+### Cassandra
 
-Part I
+## Part I
 
 Using Cassandra CLI, write commands to do the following.
 Create a COLUMN FAMILY for this dataset.
@@ -65,7 +65,7 @@ Retrieve all rows and columns.
 Delete column Genres for the movie id 83.
 Drop the column family.
 Use describe keyspace command with your netid and show content.
-Part II
+## Part II
 
 Using Cassandra CQL3, write commands to do the following.
 Create a table for this dataset. Use (MovieID) as the Primary Key.

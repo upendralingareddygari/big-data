@@ -1,0 +1,10 @@
+Q3: Cassandra Administration
+# Part i) Run nodetool command and determine how much unbalanced the cluster is.
+
+/usr/local/apache-cassandra-2.0.5/bin/nodetool -host csac0 ring
+
+/usr/local/apache-cassandra-2.0.5/bin/nodetool -host csac1 ring
+
+/usr/local/apache-cassandra-2.0.5/bin/nodetool -host csac2 ring
+
+/usr/local/apache-cassandra-2.0.5/bin/nodetool -host csac3 ring

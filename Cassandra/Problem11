@@ -1,0 +1,30 @@
+Part i)
+
+#	Create a table for this dataset. Use (MovieID) as the Primary Key.
+
+	USE uxr130130;
+	CREATE table movies_table(
+		MovieID int,
+		Title varchar,
+		Genres varchar,
+		PRIMARY KEY(MovieID)
+	);
+
+Part	ii) 
+
+#       Load all records in the dataset to this table.
+	COPY movies_table (movieid, title, genres) FROM '/tmp/Fall2014_HW-3_Hive/movies_new.dat' WITH DELIMITER = '#';
+
+Part    iii)
+# 	Insert record “1162#New Comedy Movie#Comedy" to the table.
+	Insert into movies_table(movieid, title, genres) values (1162,'New Comedy Movie','Comedy');
+
+Part	iv)
+#	Select the tuple which has movie id 1150
+	Select * from movies_table where movieid=1150;
+
+Part    v) Delete all rows in the table.
+	TRUNCATE movies_table;
+
+Part	vi) Drop the table.
+	DROP TABLE movies_table;

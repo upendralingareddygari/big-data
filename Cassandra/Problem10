@@ -1,0 +1,43 @@
+# Creating Keyspace
+	CREATE KEYSPACE uxr130130 WITH placement_strategy = 'org.apache.cassandra.locator.SimpleStrategy'
+	AND strategy_options = {replication_factor:1};
+
+#	Use Keyspace
+	USE uxr130130
+	
+# 	Part 1) Create Column Family
+	Create column family movies with
+			comparator = UTF8Type and
+			column_metadata =
+			[
+				{column_name: MovieID, validation_class: LongType, index_type: KEYS},
+				{column_name: Title, validation_class: UTF8Type},
+				{column_name: Genres, validation_class: UTF8Type}
+			];
+
+#	Part 2) Insert Data
+
+#	i)
+	SET movies['70']['Title']='From Dusk Till Dawn (1996)'; 
+	SET movies['70']['Genres']='Action|Comedy|Crime|Horror|Thriller';
+
+#	ii)
+	SET movies['83']['Title']='Once Upon a Time When We Were Colored (1995)'; 
+	SET movies['83']['Genres']='Drama';
+	
+# Assumption to handled marshall exception error
+	assume movies keys as utf8;
+	assume movies comparator as utf8;
+	assume movies validator as utf8;
+#	iii)
+	SET movies['112']['Title']='Escape from New York (1981)' WITH TTL = 300;
+	SET movies['112']['Genres']='Action|Adventure|Sci-Fi|Thriller' WITH TTL = 300;
+
+#      Part 3) Get Values
+       i) GET movies['70'];
+       ii) LIST movies;
+       iii) DEL movies['83'][Genres];
+       iv) DROP COLUMN FAMILY movies;
+
+#      Part 4)
+	DESCRIBE uxr130130
