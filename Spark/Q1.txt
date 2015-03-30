@@ -1,0 +1,10 @@
+val zipcode = readLine("Enter your input ")
+val lines = sc.textFile("hdfs://localhost:9000/input-for-WC/users.dat")
+val uArray = lines.toArray
+for(i <- 0 until uArray.length){
+val uLine = uArray(i).split("::")
+if(uLine(4) == zipCode.toString){
+println(uLine(0))
+}
+}
+

@@ -1,0 +1,7 @@
+Enter your input 99353
+14/12/08 10:07:45 INFO BlockManager: Removing broadcast 1
+14/12/08 10:07:45 INFO BlockManager: Removing block broadcast_1
+14/12/08 10:07:45 INFO MemoryStore: Block broadcast_1 of size 2496 dropped from memory (free 280092002)
+14/12/08 10:07:45 INFO ContextCleaner: Cleaned broadcast 1
+21
+4115

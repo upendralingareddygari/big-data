@@ -1,0 +1,58 @@
+val userID = "1"
+
+val ratings = sc.textFile("hdfs://localhost:9000/input-for-WC/ratings.dat")
+
+val ratingArray = ratings.toArray
+
+val ratedList = new scala.collection.mutable.MutableList[String]
+
+for(i <- 0 until ratingArray.length){
+val rateLine = ratingArray(i).split("::")
+if(rateLine(0) == userID && rateLine(2) == "4") {
+ratedList += rateLine(1)
+}
+}
+
+val itemMatrix = sc.textFile("hdfs://localhost:9000/input-for-WC/part-00000")
+
+val itemArray = itemMatrix.toArray
+
+val itemMap = new scala.collection.mutable.HashMap[String,List[String]].withDefaultValue(Nil)
+
+for(i <- 0 until itemArray.length){
+val itemLine = itemArray(i).split("\\s+")
+val itemKey = itemLine(0)
+if(itemLine.length > 1){
+val commaSplit = itemLine(1).split(",")
+for( j <- 0 until commaSplit.length){
+val movieSplit = commaSplit(j).split(":")
+val movieID = movieSplit(0)
+itemMap(itemKey) ::= movieID
+}
+}
+}
+
+val movie = sc.textFile("hdfs://localhost:9000/input-for-WC/movies.dat")
+
+val movieMap = new scala.collection.mutable.HashMap[String,String]
+val movieArray=movie.toArray
+for(i <- 0 until movieArray.length){
+val movieLine = movieArray(i).split("::")
+movieMap(movieLine(0)) = movieLine(1)
+}
+
+
+
+
+
+for(i <- 0 until ratedList.length){
+val movie = ratedList(i)
+if(itemMap.contains(movie)){
+println("")
+print(movieMap(movie)+" : ")
+for(i <- 0 until itemMap(movie).length){
+print(movieMap(itemMap(movie)(i)) + " ")
+}
+println("")
+}
+}

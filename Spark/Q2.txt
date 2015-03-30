@@ -1,0 +1,38 @@
+val ratings = sc.textFile("hdfs://localhost:9000/input-for-WC/ratings.dat")
+
+val ratingArray = ratings.toArray
+
+val movieMap = new scala.collection.mutable.HashMap[String,List[Int]].withDefaultValue(Nil)
+
+for(i <- 0 until ratingArray.length){
+val rateLine = ratingArray(i).split("::")
+movieMap(rateLine(1)) ::= rateLine(2).toInt
+}
+
+def average[T](ts: Iterable[T])(implicit num: Numeric[T]) = {
+num.toDouble(ts.sum) / ts.size
+}
+
+val movieRatingMap = new scala.collection.mutable.HashMap[String,Double]
+
+for((key,value) <- movieMap){
+val avg = average(value).toDouble
+movieRatingMap(key) = avg
+}
+
+val topRatingSeq = movieRatingMap.toSeq.sortBy(-_._2)
+
+val topIterator = topRatingSeq.iterator
+
+var count = 0
+
+var done = false
+
+while(topIterator.hasNext && !done){
+println(topIterator.next())
+count = count + 1
+if(count > 9){
+ done = true;
+}
+}
+
