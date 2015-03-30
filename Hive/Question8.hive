@@ -1,0 +1,16 @@
+drop table movies_2009;
+CREATE TABLE movies_2009(MovieId INT, MovieNAme STRING, Genre STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+drop table movies_2010;
+CREATE TABLE movies_2010(MovieId INT, MovieNAme STRING, Genre STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+drop table movies_2011;
+CREATE TABLE movies_2011(MovieId INT, MovieNAme STRING, Genre STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+FROM tblYear
+INSERT OVERWRITE TABLE movies_2009 SELECT tblYear.MovieId, tblYear.Title, tblYear.Genres WHERE (year_partition = '2009')
+INSERT OVERWRITE TABLE movies_2010 SELECT tblYear.MovieId, tblYear.Title, tblYear.Genres WHERE (year_partition = '2010')
+INSERT OVERWRITE TABLE movies_2011 SELECT tblYear.MovieId, tblYear.Title, tblYear.Genres WHERE (year_partition = '2011')

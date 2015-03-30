@@ -1,0 +1,12 @@
+add jar /home/004/u/ux/uxr130130/HiveFormatGenre.jar;
+
+CREATE TEMPORARY FUNCTION format_genre as 'HiveFormatGenre';
+
+drop table movies;
+
+CREATE TABLE movies(MovieID INT, title String, Genres STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '#';
+
+LOAD DATA local INPATH '/tmp/Fall2014_HW-3_Hive/movies_new.dat' INTO TABLE movies;
+
+select format_genre(Genres) from movies;

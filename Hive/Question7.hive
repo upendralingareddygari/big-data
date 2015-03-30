@@ -1,0 +1,10 @@
+drop table tblYear;
+
+CREATE TABLE tblYear(MovieId INT, Title STRING, Genres STRING) partitioned by (year_partition STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '#';
+
+LOAD DATA LOCAL INPATH '/tmp/HW_3_Data/partition/2009' INTO TABLE tblYear Partition(year_partition = '2009');
+LOAD DATA LOCAL INPATH '/tmp/HW_3_Data/partition/2010' INTO TABLE tblYear Partition(year_partition = '2010');
+LOAD DATA LOCAL INPATH '/tmp/HW_3_Data/partition/2011' INTO TABLE tblYear Partition(year_partition = '2011');
+
+select * from tblyear where year_partition = '2009';
