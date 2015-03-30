@@ -1,0 +1,34 @@
+problem 1:
+
+sample input:
+
+uppi@uppi-Lenovo-G560:~$ hadoop jar ~/Question1.jar Question1NumberOfMaleUsers /input-for-MovieRatings/ratings.dat /output-uppi /input-for-Users/users.dat 661
+
+uppi@uppi-Lenovo-G560:~$ hdfs dfs -cat /output-uppi/part-r-00000
+14/10/26 22:51:19 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+661	364
+
+
+Problem 2:
+
+The movie name are given as third argument seperated by comma without any space in single quotes.
+
+sample input:
+
+uppi@uppi-Lenovo-G560:~$ hadoop jar ~/Question2.jar TopTenMoviesNamesAndRatings /input-for-MovieRatings/ratings.dat /output-Inter /user/uppi/input-for-Movies/movies.dat /output-Main
+
+uppi@uppi-Lenovo-G560:~$ hdfs dfs -cat /output-Main/part-r-00000
+14/10/26 22:48:06 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+1830 Follow the Bitch (1998)	
+3172 Ulysses (Ulisse) (1954)	
+3233 Smashing Time (1967)	
+3280 Baby, The (1973)	
+3382 Song of Freedom (1936)	
+3607 One Little Indian (1973)	
+3656 Lured (1947)	
+3881 Bittersweet Motel (2000)	
+787 Gate of Heavenly Peace, The (1995)	
+989 Schlafes Bruder (Brother of Sleep) (1995)	
+
+
+
